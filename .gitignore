@@ -1,0 +1,9 @@
+todo
+*.wav
+*config.py
+.rope*
+__pycache__/
+flaskvenv/
+uploads/*
+gcp_key.json
+syntax.py
