@@ -1,4 +1,3 @@
-import os
 from google import genai
 from google.cloud import speech_v1 as speech
 from google.cloud import texttospeech
