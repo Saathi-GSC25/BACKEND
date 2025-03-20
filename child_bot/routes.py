@@ -52,8 +52,9 @@ class AudioRoute(MethodView):
         try: 
             emotion = extract_emotion(file_path)
             transcribed_resp += "The user feels the following emotion but dont mention it explicity that you know: " + emotion
-        except:
-            print("SER Failed")
+        except Exception as e:
+            return jsonify({"error":"SER Failed.", 
+                            "message": str(e) })
 
         # Generating Repsonse using Gemini
         try:
