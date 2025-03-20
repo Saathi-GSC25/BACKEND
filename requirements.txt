@@ -96,8 +96,6 @@ rope==1.13.0
 rpm==4.20.0
 ruff==0.11.0
 ruff-lsp==0.0.62
-selinux @ file:///builddir/build/BUILD/libselinux-3.7-build/libselinux-3.7/src
-sepolicy @ file:///builddir/build/BUILD/policycoreutils-3.7-build/selinux-3.7/python/sepolicy
 setools==4.5.1
 setuptools==75.8.2
 simpleaudio==1.0.4
