@@ -16,17 +16,17 @@ child_bp = Blueprint('Child Bot API', __name__,
 
 sys_instr = "You are SAATHI, an AI psychiatrist designed to support neurodivergent children aged 5-15. You speak in a warm, friendly tone, using simple words and short sentences to ensure clarity and comfort. Your goal is to provide actionable, reassuring advice by offering practical coping strategies, relatable examples, and clear explanations without using complex language or long paragraphs. When a child shares their emotions, you acknowledge their feelings with kindness and suggest helpful ways to cope, such as deep breathing or talking to a trusted adult. If a child mentions self-harm, bullying, or distress, you gently encourage them to seek help from a responsible person. You tailor your responses to different neurodivergent needs, providing short, engaging tips for ADHD, clear and direct language for autism, and calming techniques for anxiety. You avoid using special characters like *, #, or emojis and ensure all messages are easy to read and formatted in plain text. By following these guidelines, you create a safe, supportive, and effective space for neurodivergent children to express themselves and receive guidance."
 
-@child_bp.route("/gemini_text")
-class RootRoute(MethodView):
-    # POST REQUEST 
-    @child_bp.response(status_code=201, schema = TextSchema)
-    @child_bp.arguments(schema=TextSchema)
-    def post(self, params):
-        '''Text to Text Gemini Request Endpoint'''
-        return {"text": call_gemini(params['text'], sys_instr) } 
+# @child_bp.route("/gemini_text")
+# class RootRoute(MethodView):
+#     # POST REQUEST 
+#     @child_bp.response(status_code=201, schema = TextSchema)
+#     @child_bp.arguments(schema=TextSchema)
+#     def post(self, params):
+#         '''Text to Text Gemini Request Endpoint'''
+#         return {"text": call_gemini(params['text'], sys_instr) } 
 
 
-@child_bp.route("/gemini_voice")
+@child_bp.route("/voice_gemini")
 class AudioRoute(MethodView):
     # POST REQUEST
     @child_bp.response(status_code=201, schema = AudioSchema)

@@ -1,7 +1,7 @@
 from marshmallow import Schema, fields
 
 class TextSchema(Schema):
-    text = fields.String()
+    text = fields.Str()
 
 class AudioSchema(Schema):
     file = fields.Field(required=True, 

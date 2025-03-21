@@ -1,6 +1,5 @@
 todo
 *.wav
-*config.py
 .rope*
 __pycache__/
 flaskvenv/

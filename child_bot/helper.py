@@ -7,6 +7,7 @@ from scipy.io import wavfile
 from transformers import pipeline
 
 pipe = pipeline("audio-classification", model="ehcalabres/wav2vec2-lg-xlsr-en-speech-emotion-recognition")
+
 def call_gemini(prompt: str, context: str):
     """ Used for calling Gemini with a prompt"""
     client = genai.Client(api_key=GEMINI_API_KEY)
