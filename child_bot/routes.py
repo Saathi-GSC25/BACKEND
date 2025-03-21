@@ -51,7 +51,7 @@ class AudioRoute(MethodView):
         # Extracting emotion from audio
         try: 
             emotion = extract_emotion(file_path)
-            transcribed_resp += "The user feels the following emotion but dont mention it explicity that you know: " + emotion
+            transcribed_resp += "The user feels might be feeling the following emotion but we dont know for sure: " + emotion
         except Exception as e:
             return jsonify({"error":"SER Failed.", 
                             "message": str(e) })

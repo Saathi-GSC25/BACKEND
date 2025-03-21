@@ -1,5 +1,9 @@
 ## Setup Guide
 
+
+docker build --no-cache -t flasktry .
+docker run -p 5000:5000 -it flasktry
+
 1. Clone the repository using git.
 2. Make a virtual environment using virutalenv (chatGPT provide the commands).
 3. Enter the virutalenv.
