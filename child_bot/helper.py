@@ -2,9 +2,11 @@ from google import genai
 from google.cloud import speech_v1 as speech
 from google.cloud import texttospeech
 from google.genai import types
-from child_bot.config import GEMINI_API_KEY
+from config import GEMINI_API_KEY
 from scipy.io import wavfile
 from transformers import pipeline
+
+from config import GCP_KEY
 
 pipe = pipeline("audio-classification", model="ehcalabres/wav2vec2-lg-xlsr-en-speech-emotion-recognition")
 
@@ -33,7 +35,7 @@ def convert_to_mono(input_file: str, output_file: str):
 def call_chirp(input_file: str):
     """ Calling Google Chirp to convert audio to text """
     sample_rate = convert_to_mono(input_file, "temp.wav")
-    client = speech.SpeechClient.from_service_account_file("gcp_key.json") #Requires Service Account
+    client = speech.SpeechClient.from_service_account_file(GCP_KEY) #Requires Service Account
 
     with open("temp.wav", 'rb') as audio_file:
         # Making the parameters
@@ -53,8 +55,7 @@ def call_chirp(input_file: str):
 
 def call_tts(text: str, output_file: str):
     """ Calling Google's Text to Speech Model """ 
-    client = texttospeech.TextToSpeechClient.from_service_account_file(
-            "gcp_key.json")
+    client = texttospeech.TextToSpeechClient.from_service_account_file(GCP_KEY)
 
     # Making Required Parameters
     synthesis_input = texttospeech.SynthesisInput(text=text)

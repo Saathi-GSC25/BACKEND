@@ -4,7 +4,7 @@ from flask_smorest import Blueprint
 from flask.views import MethodView
 from werkzeug.utils import secure_filename
 from marshmallow import ValidationError
-from child_bot.config import UPLOAD_FOLDER
+from config import UPLOAD_FOLDER
 from child_bot.helper import call_chirp, call_gemini, call_tts, extract_emotion
 from child_bot.schema import AudioSchema, TextSchema
 

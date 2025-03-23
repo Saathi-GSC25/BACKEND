@@ -1,6 +1,6 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint
-from child_bot.config import GEMINI_API_KEY
+from config import GEMINI_API_KEY
 from parent_bot.schema import ChatSchema 
 import google.generativeai as genai
 

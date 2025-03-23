@@ -55,9 +55,9 @@ CMD ["/bin/bash"]
 
 2. Build the docker image using - `docker build --no-cache -t <image_name> . `
 3. Run the docker container using - `docker run -p 5000:5000 -it <image_name> `
-4. Setup the key acquired from Google Cloud Provider in a new file called `gcp_key.json`.
+4. Setup the key acquired from Google Cloud Provider with the new GCP Key and update the `GCP_KEY` variable in the config file with its path.
 5. Make a folder called `uploads`.
-6. Setup a file `child_bot/config.py` with the following information - 
+6. Setup a file `config.py` with the following information - 
 ```
 GEMINI_API_KEY = <YOUR_API_KEY>
 UPLOAD_FOLDER = 'uploads'
