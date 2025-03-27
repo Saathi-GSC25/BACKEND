@@ -6,3 +6,5 @@ flaskvenv/
 uploads/*
 gcp_key.json
 syntax.py
+*.rdb
+.env
