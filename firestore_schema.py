@@ -228,13 +228,5 @@ class LearningTask:
         # Copy the original dictionary
         new_data = {key: value for key, value in data.items()}
         
-        time_field = new_data.get("from_time")
-        if time_field and isinstance(time_field, str):
-            new_data["from_time"] = datetime.fromisoformat(time_field)
-
-        time_field = new_data.get("to_time")
-        if time_field and isinstance(time_field, str):
-            new_data["to_time"] = datetime.fromisoformat(time_field)
-        
         return cls(**new_data)
 

@@ -167,6 +167,7 @@ class ChildDetailsPOST(MethodView):
     def post(self, params):
         '''Fetches all details of a particular child given child_id or parent uuid'''
 
+        print(params)
         # Find out if session contatins child information
         child_id = session.get('child_id', None)  
         if child_id  == None and 'parent_uuid' not in params:
@@ -176,6 +177,7 @@ class ChildDetailsPOST(MethodView):
         # Provide both infromation to function to retrieve from firestore
         # It will prioritize parent_uuid
         ret = get_child_entry(child_id, params['parent_uuid'])
+        
         if ret:
             child_dict, child_id = ret 
             # Store the child_id in the session cookie

@@ -145,7 +145,6 @@ class EndChat(MethodView):
             return { "status":400, "message":mssg}, 400
         return { "status": 200 , "message":mssg }
 
-
 # -----------------------------------------------------------------
 # FIRESTORE ROUTES
 # -----------------------------------------------------------------

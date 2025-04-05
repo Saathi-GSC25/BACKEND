@@ -33,7 +33,6 @@ def call_gemini(prompt: str, chat_history: list, emotion:str|None):
     return response.text
 
 
-
 # ----------------------------------------------------------------------
 # GOOGLE Chirp Model
 # ----------------------------------------------------------------------
