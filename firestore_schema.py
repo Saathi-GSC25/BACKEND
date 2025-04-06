@@ -95,6 +95,9 @@ class Conversation:
             return datetimeobj.strftime("%d %B %Y")
         elif isinstance(datetimeobj, time):
             return datetimeobj.strftime("%I:%M %p")
+        else:
+            print("ERROR invalid date/time obj passed")
+
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "Conversation":
         # Copy the original dictionary
