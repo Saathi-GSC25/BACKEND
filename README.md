@@ -63,7 +63,19 @@ CMD ["/bin/bash"]
 ```
 GEMINI_API_KEY = <YOUR_API_KEY>
 ```
-7. Download the Google Cloud Provider SDK using `curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-455.0.0-linux-x86_64.tar.gz`
-8. Extract the files using `tar -xf google-cloud-sdk-455.0.0-linux-x86_64.tar.gz`
-9. Install `gcloud` SDK using `./google-cloud-sdk/install.sh` 
-10. Run `gcloud auth application-default login`
+7. Download the Google Cloud Provider SDK using 
+```
+curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-455.0.0-linux-x86_64.tar.gz
+```
+8. Extract the files using 
+```
+tar -xf google-cloud-sdk-455.0.0-linux-x86_64.tar.gz
+```
+9. Install `gcloud` SDK by running the following command - `./google-cloud-sdk/install.sh` 
+10. Run in a bash terminal `gcloud auth application-default login`
+11. Run the flask application using `python app.py`
+
+
+Left to explain:
+
+1. 
