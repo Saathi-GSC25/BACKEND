@@ -141,6 +141,10 @@ class EndChat(MethodView):
         # Save all of them as a new conversation document in Firestore
         status, mssg = add_new_conversation( child_id, chat_history , emotion, duration )
 
+        session.pop("chat_history", None)
+        session.pop("duration", None)
+        session.pop("emotion", None)
+
         if status == False:
             return { "status":400, "message":mssg}, 400
         return { "status": 200 , "message":mssg }
