@@ -216,7 +216,7 @@ def fetch_all_conversations(child_id: str):
         )
 
         # Sort by date field in descending order (latest first)
-        docs = collection_ref.order_by("date", direction=firestore.Query.DESCENDING).stream()
+        docs = collection_ref.order_by("date", direction=firestore.Query.DESCENDING).order_by("time", direction=firestore.Query.DESCENDING).stream()
 
         return [doc.to_dict() for doc in docs]
     except Exception as e:
