@@ -86,7 +86,7 @@ class Conversation:
         """ Convert the Conversation instance to a dictionary,
             only including keys with non-None values """
         return {
-            key: (value.isoformat() if isinstance(value, (date, time) ) else value)
+            key: (self.datetimeformat(value) if isinstance(value, (date, time) ) else value)
             for key, value in self.__dict__.items() if value is not None
         }
 
