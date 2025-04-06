@@ -30,6 +30,7 @@ RUN apt-get update && \
         dbus \
         brltty \
         tmux \
+        curl \
         python3-brlapi && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -62,4 +63,7 @@ CMD ["/bin/bash"]
 ```
 GEMINI_API_KEY = <YOUR_API_KEY>
 ```
-7. Install `gcloud` SDK and run `gcloud auth application-default login`
+7. Download the Google Cloud Provider SDK using `curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-455.0.0-linux-x86_64.tar.gz`
+8. Extract the files using `tar -xf google-cloud-sdk-455.0.0-linux-x86_64.tar.gz`
+9. Install `gcloud` SDK using `./google-cloud-sdk/install.sh` 
+10. Run `gcloud auth application-default login`
