@@ -162,8 +162,8 @@ def add_new_conversation(child_id:str,
                 conv_sum.conversations = conv_sum.conversations + 1
             conv_sum.last_updated = datetime.now()
             conv_sum.stress = stress
-            conv_sum.stressSummary = "loremIpsum"
-            conv_sum.interests_summary = "Summary of interests"
+            conv_sum.stressSummary = "We should chat more to find reasons why they are stressed"
+            conv_sum.interests_summary = "Food, Playing Games and more"
             conv_sum.emotion = dominant_emotion
             if conv_sum.total_duration:
                 conv_sum.total_duration = conv_sum.total_duration + duration
@@ -216,7 +216,7 @@ def fetch_all_conversations(child_id: str):
         )
 
         # Sort by date field in descending order (latest first)
-        docs = collection_ref.order_by("date", direction=firestore.Query.DESCENDING).stream()
+        docs = collection_ref.order_by("date", direction=firestore.Query.DESCENDING).order_by("time", direction=firestore.Query.DESCENDING).stream()
 
         return [doc.to_dict() for doc in docs]
     except Exception as e:
