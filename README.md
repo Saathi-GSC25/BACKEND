@@ -62,3 +62,4 @@ CMD ["/bin/bash"]
 ```
 GEMINI_API_KEY = <YOUR_API_KEY>
 ```
+7. Install `gcloud` SDK and run `gcloud auth application-default login`
