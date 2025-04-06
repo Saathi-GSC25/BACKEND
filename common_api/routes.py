@@ -105,7 +105,7 @@ class LearningView(MethodView):
         list_of_tasks = list_all_learning_tasks(child_id)
         return {"status":200, 
                 "message": "Successfully retrieved all tasks", 
-                "habitual_tasks": list_of_tasks }
+                "learning_tasks": list_of_tasks }
 
     @common_learning_bp.response(status_code=201)
     @common_learning_bp.arguments(schema=LearningTaskPOSTSchema)

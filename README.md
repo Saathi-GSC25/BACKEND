@@ -29,6 +29,7 @@ RUN apt-get update && \
         lvm2 \
         dbus \
         brltty \
+        tmux \
         python3-brlapi && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -54,21 +55,10 @@ CMD ["/bin/bash"]
 ```
 
 2. Build the docker image using - `docker build --no-cache -t <image_name> . `
-3. Run the docker container using - `docker run -p 5000:5000 -it <image_name> `
+3. Run the docker container using - `docker run -it -v "$PWD":/app -p 5000:5000 -p 6379:6379 <image_name> `
 4. Setup the key acquired from Google Cloud Provider with the new GCP Key and update the `GCP_KEY` variable in the config file with its path.
 5. Make a folder called `uploads`.
-6. Setup a file `config.py` with the following information - 
+6. Setup a file `.env` with the following information - 
 ```
 GEMINI_API_KEY = <YOUR_API_KEY>
-UPLOAD_FOLDER = 'uploads'
-
-class APIConfig:
-    API_TITLE = "SaathiAPI"
-    API_VERSION = "0.0.1"
-    OPENAPI_VERSION = "3.0.3"
-    OPENAPI_URL_PREFIX = "/"
-    OPENAPI_SWAGGER_UI_PATH = "/docs"
-    OPENAPI_SWAGGER_UI_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.24.2/"
-
 ```
-
