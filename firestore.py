@@ -215,7 +215,10 @@ def fetch_all_conversations(child_id:str):
                 CHILD_COLLECTION_NAME+"/"+child_id+"/"+CONV_COLLECTION_NAME)
 
         # Fetch all documents
-        docs = collection_ref.stream()
+        docs = collection_ref \
+            .order_by("date", direction=firestore.Query.DESCENDING) \
+            .order_by("time", direction=firestore.Query.DESCENDING) \
+            .stream()
         list_of_conv = []
         for doc in docs:
             list_of_conv += [doc.to_dict()]
