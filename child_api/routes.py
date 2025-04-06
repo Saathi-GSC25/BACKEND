@@ -190,12 +190,12 @@ class ChildSummary(MethodView):
         # Change format of durations
         for chat in chat_summary['conversation_list']:
             if 'duration' in chat and isinstance(chat['duration'], float):
-                chat['duration'] = f"{int(chat['duration']//60)} mins"
+                chat['duration'] = f"{ int(chat['duration']//60) if chat['duration'] > 60 else chat['duration'] } mins"
 
         # Change total duration float to a proper string
         if 'total_duration' in chat_summary and isinstance(chat_summary['total_duration'], float):
             total_seconds = chat_summary['total_duration']
-            chat_summary['total_duration'] = f"{int(total_seconds//3600)}hr {int(total_seconds//60)}min"
+            chat_summary['total_duration'] = f"{int(total_seconds//3600)}hr {int(total_seconds//60)}sec"
 
 
         return chat_summary
