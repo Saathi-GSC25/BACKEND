@@ -86,8 +86,9 @@ tar -xf google-cloud-sdk-455.0.0-linux-x86_64.tar.gz
 ```
 gcloud auth application-default login
 ```
-11. Run the flask application 
+11. Enter the virtual environment and run the flask application. 
 ```
+source $VIRTUAL_ENV/bin/activate
 python app.py
 ```
 

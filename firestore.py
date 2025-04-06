@@ -102,6 +102,7 @@ def check_username_exists(username: str):
 
 summarize_prompt = "Make a summary as short as possible with maximum 100 words of the chat history. Mention only important points."
 positive_prompt = "What are the activities that have a positive impact on the user (which is not me) that you understand in the chat so far? Limit to 80 words"
+stress_prompt = "Based on the chat history what is the level of stress of the user? Answer in 1 word ONLY out of the 4 words - free / low / moderate / high"
 
 
 def most_frequent(lst):
@@ -117,6 +118,8 @@ def add_new_conversation(child_id:str,
         summary = call_gemini(summarize_prompt, chat_history, None)
         # make API call to extract positive impacts (interests)
         interests = call_gemini(positive_prompt, chat_history, None)
+        # make API call to extract stress level
+        stress = call_gemini(stress_prompt, chat_history, None)
         # Current date and time according to server
         date_time = datetime.now(timezone.utc)
         # Checking which emotion is the most dominant in the conversation 
@@ -132,7 +135,7 @@ def add_new_conversation(child_id:str,
         duration = duration,
         summary = summary,
         emotion = dominant_emotion,
-        stress = "lorem",
+        stress = stress,
         stressSummary="ipsum"
         )
 
@@ -154,7 +157,7 @@ def add_new_conversation(child_id:str,
             if conv_sum.conversations:
                 conv_sum.conversations = conv_sum.conversations + 1
             conv_sum.last_updated = datetime.now()
-            conv_sum.stress = "moderate"
+            conv_sum.stress = stress
             conv_sum.stressSummary = "loremIpsum"
             conv_sum.interests_summary = "Summary of interests"
             conv_sum.emotion = dominant_emotion
@@ -174,7 +177,7 @@ def add_new_conversation(child_id:str,
                         last_updated = datetime.now(),
                         emotion = dominant_emotion, 
                         conversations=1, 
-                        stress="lorem",
+                        stress=stress,
                         stressSummary="ipsum",
                         total_duration=duration,
                         interests_summary=interests
