@@ -126,6 +126,8 @@ def add_new_conversation(child_id:str,
         date_time = datetime.now(timezone.utc)
         # Checking which emotion is the most dominant in the conversation 
         dominant_emotion = most_frequent(emotion)
+        if isinstance(dominant_emotion, str):
+            dominant_emotion = dominant_emotion.title()
     except Exception as e:
         return (False, str(e))
 
