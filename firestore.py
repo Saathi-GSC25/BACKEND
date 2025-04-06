@@ -257,17 +257,36 @@ def list_all_habitual_tasks(child_id:str):
     return list_of_tasks
 
 def update_habitual_task(child_id:str, task_id:str, ht:HabitualTask):
-    doc_ref = db.collection(
+    task_doc_ref = db.collection(
             CHILD_COLLECTION_NAME+"/"+
             child_id+"/"+ 
             HABITUAL_TASKS_COLLECTION_NAME
             ).document(task_id)
     try:
-        doc_ref.update(ht.to_dict())
-        return (True, "Successfully updated task")
+        task_dict = ht.to_dict()
+        task_doc_ref.update(task_dict)
     except Exception as e:
         return (False, str(e))
 
+    # If this is task being updated as done, add the points
+    if 'is_done' in task_dict and task_dict['is_done']:
+
+        # Fetch how many points
+        old_points = task_doc_ref.get().to_dict()['points']
+
+        # Get how many points it had previously
+        try:
+            ret = get_child_entry(child_id=child_id)
+            if ret:
+                child_dict, _ = ret
+                if 'points' in child_dict:
+                    new_points = child_dict['points'] 
+                    update_child_entry(child_id, Child(points=old_points+new_points))
+
+        except Exception as e:
+            return (False, str(e))
+
+    return (True, "Successfully updated task")
 def delete_habitual_task(child_id:str, task_id:str):
     doc_ref = db.collection(
             CHILD_COLLECTION_NAME+"/"+
