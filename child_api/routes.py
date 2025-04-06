@@ -186,10 +186,14 @@ class ChildSummary(MethodView):
 
         # Fetch conversation list
         chat_summary['conversation_list'] = fetch_all_conversations(child_id)
+        if 'total_duration' in chat_summary and isinstance(chat_summary['total_duration'], float):
+            total_seconds = chat_summary['total_duration']
+            chat_summary['total_duration'] = f"{total_seconds//3600}hr {total_seconds//60}min"
+
 
         return chat_summary
 
-# ---------------------
+# ---------------------f
 # DEV ONLY Routes
 # ---------------------
 
