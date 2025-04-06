@@ -31,6 +31,7 @@ RUN apt-get update && \
         brltty \
         tmux \
         curl \
+        redis-server \
         python3-brlapi && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -72,10 +73,9 @@ curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-
 tar -xf google-cloud-sdk-455.0.0-linux-x86_64.tar.gz
 ```
 9. Install `gcloud` SDK by running the following command - `./google-cloud-sdk/install.sh` 
-10. Run in a bash terminal `gcloud auth application-default login`
+10. Open a new bash terminal or use `source ~/.bashrc`  
+```
+gcloud auth application-default login
+```
 11. Run the flask application using `python app.py`
 
-
-Left to explain:
-
-1. 
