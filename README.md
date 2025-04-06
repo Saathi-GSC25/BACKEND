@@ -92,3 +92,4 @@ source $VIRTUAL_ENV/bin/activate
 python app.py
 ```
 
+TODO: Redisserver start command

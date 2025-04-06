@@ -102,7 +102,7 @@ def check_username_exists(username: str):
 
 summarize_prompt = "Make a summary as short as possible with maximum 100 words of the chat history. Mention only important points."
 positive_prompt = "What are the activities that have a positive impact on the user (which is not me) that you understand in the chat so far? Limit to 80 words"
-stress_prompt = "Based on the chat history what is the level of stress of the user? Answer in 1 word ONLY out of the 4 words - free / low / moderate / high"
+stress_prompt = "Based on the chat history what is the level of stress of the user? Answer in 1 word ONLY out of the 4 words - free / low / moderate / high. Only use lowercase. "
 
 
 def most_frequent(lst):
@@ -120,6 +120,8 @@ def add_new_conversation(child_id:str,
         interests = call_gemini(positive_prompt, chat_history, None)
         # make API call to extract stress level
         stress = call_gemini(stress_prompt, chat_history, None)
+        if len(stress) > 0:
+            stress = stress.strip()
         # Current date and time according to server
         date_time = datetime.now(timezone.utc)
         # Checking which emotion is the most dominant in the conversation 
