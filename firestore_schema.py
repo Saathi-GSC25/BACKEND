@@ -118,6 +118,7 @@ class ConversationSummary:
                  stress: Optional[str] = None,
                  stressSummary: Optional[str] = None,
                  total_duration: Optional[Union[int, float]] = None,
+                 interests_summary:Optional[str] = None, 
                  ):
         """
         Initialize a Conversation instance.
@@ -129,6 +130,7 @@ class ConversationSummary:
         self.stress = stress
         self.stressSummary = stressSummary
         self.conversations = conversations
+        self.interests_summary = interests_summary
 
     def to_dict(self) -> Dict[str, Any]:
         """ Convert the Conversation instance to a dictionary,

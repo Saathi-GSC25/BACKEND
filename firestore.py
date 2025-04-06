@@ -154,8 +154,9 @@ def add_new_conversation(child_id:str,
             if conv_sum.conversations:
                 conv_sum.conversations = conv_sum.conversations + 1
             conv_sum.last_updated = datetime.now()
-            conv_sum.stress = "lorem"
+            conv_sum.stress = "moderate"
             conv_sum.stressSummary = "loremIpsum"
+            conv_sum.interests_summary = "Summary of interests"
             conv_sum.emotion = dominant_emotion
             if conv_sum.total_duration:
                 conv_sum.total_duration = conv_sum.total_duration + duration
@@ -175,7 +176,8 @@ def add_new_conversation(child_id:str,
                         conversations=1, 
                         stress="lorem",
                         stressSummary="ipsum",
-                        total_duration=duration
+                        total_duration=duration,
+                        interests_summary=interests
                     )
             # Storing it back
             try:

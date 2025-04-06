@@ -56,10 +56,16 @@ EXPOSE 5000
 CMD ["/bin/bash"]
 ```
 
-2. Build the docker image using - `docker build --no-cache -t <image_name> . `
-3. Run the docker container using - `docker run -it -v "$PWD":/app -p 5000:5000 -p 6379:6379 <image_name> `
+2. Build the docker image 
+```
+docker build --no-cache -t <image_name> .
+```
+3. Run the docker container with the ports 5000(flask) and 6379(redis) exposed 
+```
+docker run -it -p 5000:5000 -p 6379:6379 <image_name>
+```
 4. Setup the key acquired from Google Cloud Provider with the new GCP Key and update the `GCP_KEY` variable in the config file with its path.
-5. Make a folder called `uploads`.
+5. Make a folder called `uploads`
 6. Setup a file `.env` with the following information - 
 ```
 GEMINI_API_KEY = <YOUR_API_KEY>
@@ -72,10 +78,16 @@ curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-
 ```
 tar -xf google-cloud-sdk-455.0.0-linux-x86_64.tar.gz
 ```
-9. Install `gcloud` SDK by running the following command - `./google-cloud-sdk/install.sh` 
+9. Install `gcloud` SDK by running the following command 
+```
+./google-cloud-sdk/install.sh
+```
 10. Open a new bash terminal or use `source ~/.bashrc`  
 ```
 gcloud auth application-default login
 ```
-11. Run the flask application using `python app.py`
+11. Run the flask application 
+```
+python app.py
+```
 
