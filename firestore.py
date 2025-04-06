@@ -209,25 +209,19 @@ def fetch_chat_summary(child_id:str):
     except Exception as e:
         return None
 
-def fetch_all_conversations(child_id:str):
+def fetch_all_conversations(child_id: str):
     try:
         collection_ref = db.collection(
-                CHILD_COLLECTION_NAME+"/"+child_id+"/"+CONV_COLLECTION_NAME)
+            f"{CHILD_COLLECTION_NAME}/{child_id}/{CONV_COLLECTION_NAME}"
+        )
 
-        # Fetch all documents
-        docs = collection_ref \
-            .order_by("date", direction=firestore.Query.DESCENDING) \
-            .order_by("time", direction=firestore.Query.DESCENDING) \
-            .stream()
-        list_of_conv = []
-        for doc in docs:
-            list_of_conv += [doc.to_dict()]
+        # Sort by date field in descending order (latest first)
+        docs = collection_ref.order_by("date", direction=firestore.Query.DESCENDING).stream()
 
-        return list_of_conv
-    except:
+        return [doc.to_dict() for doc in docs]
+    except Exception as e:
+        print("Error fetching conversations:", e)
         return []
-
-
 # -----------------------------------------------------------------
 # Habitual Tasks Helper Functions
 # -----------------------------------------------------------------
