@@ -101,7 +101,7 @@ def check_username_exists(username: str):
 # -----------------------------------------------------------------
 
 summarize_prompt = "Make a summary as short as possible with maximum 100 words of the chat history. Mention only important points."
-positive_prompt = "What are the activities that have a positive impact on the user (which is not me) that you understand in the chat so far? Limit to 80 words"
+positive_prompt = "What are the activities that have a positive impact on the user (which is not me) that you understand in the chat so far? Limit to 40 words"
 stress_prompt = "Based on the chat history what is the level of stress of the user? Answer in 1 word ONLY out of the 4 words - Stressless / Low / Moderate / High. Only use title case. "
 
 

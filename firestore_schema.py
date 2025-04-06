@@ -90,6 +90,11 @@ class Conversation:
             for key, value in self.__dict__.items() if value is not None
         }
 
+    def datetimeformat(self, datetimeobj):
+        if isinstance(datetimeobj, date):
+            return datetimeobj.strftime("%d %B %Y")
+        elif isinstance(datetimeobj, time):
+            return datetimeobj.strftime("%I:%M %p")
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "Conversation":
         # Copy the original dictionary
@@ -99,10 +104,10 @@ class Conversation:
         time_field = new_data.get("time")
 
         if date_field and isinstance(date_field, str) :
-            date_obj = date.fromisoformat(date_field)  
+            date_obj = datetime.strptime(date_field, "%d %B %Y")
             new_data['date'] = date_obj
         if time_field and isinstance(time_field, str):
-            time_obj = time.fromisoformat(time_field) 
+            time_obj = datetime.strptime(time_field, "%I:%M %p")
             new_data['time'] = time_obj
         
         return cls(**new_data)
