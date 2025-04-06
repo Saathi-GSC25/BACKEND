@@ -103,6 +103,8 @@ def check_username_exists(username: str):
 summarize_prompt = "Make a summary as short as possible with maximum 100 words of the chat history. Mention only important points."
 positive_prompt = "What are the activities that have a positive impact on the user (which is not me) that you understand in the chat so far? Limit to 40 words"
 stress_prompt = "Based on the chat history what is the level of stress of the user? Answer in 1 word ONLY out of the 4 words - Stressless / Low / Moderate / High. Only use title case. "
+stress_reason_prompt = "Based on the chat history can you answer in 30 words why the user is stressed and if they do not seem stressed just reply with \"User not stressed\". "
+stress_summary_prompt = "Can you state a crisp reason for stress from the following messages and write \"No Stress\" if there is none."
 
 
 def most_frequent(lst):
@@ -122,8 +124,8 @@ def add_new_conversation(child_id:str,
         stress = call_gemini(stress_prompt, chat_history, None)
         if len(stress) > 0:
             stress = stress.strip()
-        # Current date and time according to server
-        date_time = datetime.now(timezone.utc)
+        # make API call to find possible reason for stress
+        stress_reason = call_gemini(stress_reason_prompt, chat_history, None)
         # Checking which emotion is the most dominant in the conversation 
         dominant_emotion = most_frequent(emotion)
         if isinstance(dominant_emotion, str):
@@ -140,7 +142,7 @@ def add_new_conversation(child_id:str,
         summary = summary,
         emotion = dominant_emotion,
         stress = stress,
-        stressSummary="ipsum"
+        stressSummary=stress_reason
         )
 
 
@@ -162,8 +164,8 @@ def add_new_conversation(child_id:str,
                 conv_sum.conversations = conv_sum.conversations + 1
             conv_sum.last_updated = datetime.now()
             conv_sum.stress = stress
-            conv_sum.stressSummary = "We should chat more to find reasons why they are stressed"
-            conv_sum.interests_summary = "Food, Playing Games and more"
+            conv_sum.stressSummary = call_gemini( stress_summary_prompt + conv_sum.stressSummary + stress_reason, [], None)
+            conv_sum.interests_summary = interests
             conv_sum.emotion = dominant_emotion
             if conv_sum.total_duration:
                 conv_sum.total_duration = conv_sum.total_duration + duration
@@ -182,7 +184,7 @@ def add_new_conversation(child_id:str,
                         emotion = dominant_emotion, 
                         conversations=1, 
                         stress=stress,
-                        stressSummary="ipsum",
+                        stressSummary=stress_reason,
                         total_duration=duration,
                         interests_summary=interests
                     )
