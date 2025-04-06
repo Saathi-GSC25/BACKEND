@@ -148,7 +148,7 @@ class ConversationSummary:
         # Process the date field if it's provided as a string
         date_field = new_data.get("last_updated")
         if date_field and isinstance(date_field, str):
-            new_data["last_updated"] = datetime.fromisoformat(date_field)
+            new_data["last_updated"] = datetime.strptime(date_field, "%H:%M, %d/%m/%Y")
         
         return cls(**new_data)
 
