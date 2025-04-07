@@ -1,3 +1,11 @@
+## Link to Documentation
+
+[Swagger UI Documentation](http://35.200.160.97/docs)
+
+## Backend Architechture
+
+![Backend Arch](./arch.png)
+
 ## Setup Guide
 
 1. Setup a docker environment with the following Dockerfile
@@ -86,10 +94,13 @@ tar -xf google-cloud-sdk-455.0.0-linux-x86_64.tar.gz
 ```
 gcloud auth application-default login
 ```
-11. Enter the virtual environment and run the flask application. 
+11. Start the redis server by running the following command in a new terminal  
+```
+redis-server
+```
+12. Enter the virtual environment and run the flask application. 
 ```
 source $VIRTUAL_ENV/bin/activate
 python app.py
 ```
 
-TODO: Redisserver start command
